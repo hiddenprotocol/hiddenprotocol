@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Crimson Text', serif;
+    background: #000000;
+    overflow-x: hidden;
+  }
+}
+
+.glow-text {
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.5),
+               0 0 20px rgba(255, 0, 0, 0.3),
+               0 0 30px rgba(255, 0, 0, 0.2);
+}
+
+.search-bar {
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.search-bar:focus {
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+}
+
+.gradient-border {
+  background: linear-gradient(to right, #ff0000, #800000);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+}
+
+.gradient-border::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, #ff0000, #800000);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gradient-border:hover::after {
+  opacity: 1;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+.flicker {
+  animation: flicker 4s infinite;
+}
+
+.feature-card {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    0 100%
+  );
+  animation: float 10s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+.feature-card:hover {
+  animation: glitchShift 0.3s infinite;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 0, 0, 0.5);
+  animation: scanline 2s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+.glitch-text {
+  position: relative;
+  animation: glitch 3s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 0.05em 0 0 #ff0000,
+                -0.05em -0.025em 0 #00ff00,
+                -0.025em 0.05em 0 #0000ff;
+  }
+  14% {
+    text-shadow: 0.05em 0 0 #ff0000,
+                -0.05em -0.025em 0 #00ff00,
+                -0.025em 0.05em 0 #0000ff;
+  }
+  15% {
+    text-shadow: -0.05em -0.025em 0 #ff0000,
+                0.025em 0.025em 0 #00ff00,
+                -0.05em -0.05em 0 #0000ff;
+  }
+  49% {
+    text-shadow: -0.05em -0.025em 0 #ff0000,
+                0.025em 0.025em 0 #00ff00,
+                -0.05em -0.05em 0 #0000ff;
+  }
+  50% {
+    text-shadow: 0.025em 0.05em 0 #ff0000,
+                0.05em 0 0 #00ff00,
+                0 -0.05em 0 #0000ff;
+  }
+  99% {
+    text-shadow: 0.025em 0.05em 0 #ff0000,
+                0.05em 0 0 #00ff00,
+                0 -0.05em 0 #0000ff;
+  }
+  100% {
+    text-shadow: -0.025em 0 0 #ff0000,
+                -0.025em -0.025em 0 #00ff00,
+                -0.025em -0.05em 0 #0000ff;
+  }
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  25% { transform: translateY(-15px) rotate(-2deg); }
+  75% { transform: translateY(15px) rotate(2deg); }
+}
+
+@keyframes glitchShift {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-3px, 3px); }
+  40% { transform: translate(-3px, -3px); }
+  60% { transform: translate(3px, 3px); }
+  80% { transform: translate(3px, -3px); }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.use-case-card {
+  animation: float 10s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+.use-case-card:hover {
+  animation: glitchShift 0.3s infinite;
+}
+
+.use-case-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 0, 0, 0.5);
+  animation: scanline 2s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.use-case-card:hover::before {
+  opacity: 1;
+}
+
+.chaotic-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+@media (min-width: 768px) {
+  .chaotic-grid {
+    grid-template-areas:
+      "a b"
+      "c d";
+  }
+  
+  .chaotic-grid > div:nth-child(1) { grid-area: a; transform: rotate(-3deg) translateZ(20px); }
+  .chaotic-grid > div:nth-child(2) { grid-area: b; transform: rotate(2deg) translateZ(-10px); }
+  .chaotic-grid > div:nth-child(3) { grid-area: c; transform: rotate(1deg) translateZ(30px); }
+  .chaotic-grid > div:nth-child(4) { grid-area: d; transform: rotate(-2deg) translateZ(0px); }
+}

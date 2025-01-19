@@ -1,6 +1,7 @@
 # Hidden Protocol
 
-![Hidden Protocol]([https://i.imgur.com/1pLinmH.jpeg])
+![Hidden Protocol](https://i.imgur.com/1pLinmH.jpeg)
+
 
 A classified infiltration system designed to uncover suppressed information across the dark web. Built with React, Three.js, and advanced 3D visualization techniques.
 
